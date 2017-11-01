@@ -125,12 +125,25 @@ app.get('/', function (req, res){
     if(req.query.fileFormat != undefined && req.query.fileFormat == 'tar') {
         let tar = cp.spawnSync('tar', ['-cvf', appName+'.tar.gz', appName]);
         res.setHeader('Content-Disposition', 'attachment; filename=' + appName + '.tar.gz');
-        res.sendFile(appName + '.tar.gz', { root: __dirname });
-        // let cleanupTar = cp.spawn('rm' [appName+'.tar.gz']);
+        res.sendFile(appName + '.tar.gz', { root: __dirname }, function(err) {
+            if(err) {
+                console.log("Error sending file: " + err);
+            } else {
+                let cleanupTar = cp.spawn('rm' [appName+'.tar.gz']);
+                let cleanupDir = cp.spawn('rm', ['-rf', appName]);
+            }
+        });
     } else {
         let zip = cp.spawnSync('zip', ['-r', appName + '.zip', appName]);
         res.setHeader('Content-Disposition', 'attachment; filename=' + appName + '.zip');
-        res.sendFile(appName + '.zip', { root: __dirname });
+        res.sendFile(appName + '.zip', { root: __dirname }, function(err) {
+            if(err) {
+                console.log("Error sending file: " + err);
+            } else {
+                let cleanupTar = cp.spawn('rm' [appName+'.tar.gz']);
+                let cleanupDir = cp.spawn('rm', ['-rf', appName]);
+            }
+        });
     //     let cleanupZip = cp.spawn('rm' [appName+'.zip']);
     }
 })
