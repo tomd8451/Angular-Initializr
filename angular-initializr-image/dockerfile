@@ -18,6 +18,8 @@ RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.
 
 RUN apt-get update && apt-get install yarn
 
+RUN yes | apt-get install zip
+
 RUN yarn install
 
 RUN yarn global add @angular/cli
