@@ -116,7 +116,7 @@ app.get('/', function (req, res){
         args.push('--collection=@nrwl/schematics');
     }
 
-    args.push('--style=' + styling);
+    args.push('--style=' + style);
 
     args.push('');
 
