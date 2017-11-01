@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "archiver": "^2.1.0",
+    "express": "^4.16.2"
+  }
+}
