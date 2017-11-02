@@ -6,7 +6,7 @@ const app = express();
 const cp = require('child_process');
 
 
-
+var rimraf = require('rimraf');
 var fs = require('fs');
 var archiver = require('archiver');
 
@@ -118,9 +118,12 @@ app.get('/', function (req, res){
 
     args.push('--style=' + style);
 
-    args.push('');
+    // console.log("calling ng " + args);
 
-    let newApp = cp.spawnSync('ng', args);
+    let newApp = cp.spawnSync('ng', args, {
+        stdio: 'pipe'
+    });
+    console.log(String(newApp.stdout));
 
     if(req.query.fileFormat != undefined && req.query.fileFormat == 'tar') {
         let tar = cp.spawnSync('tar', ['-cvf', appName+'.tar.gz', appName]);
@@ -129,8 +132,10 @@ app.get('/', function (req, res){
             if(err) {
                 console.log("Error sending file: " + err);
             } else {
-                let cleanupTar = cp.spawn('rm' [appName+'.tar.gz']);
-                let cleanupDir = cp.spawn('rm', ['-rf', appName]);
+                rimraf(appName, function() {console.log("removed " + appName)});
+                fs.unlink(appName+'.tar.gz')
+                // let cleanupTar = cp.spawn('rm' [ appName + '.tar.gz' ]);
+                // let cleanupDir = cp.spawn('rm', ['-rf', appName]);
             }
         });
     } else {
@@ -140,8 +145,10 @@ app.get('/', function (req, res){
             if(err) {
                 console.log("Error sending file: " + err);
             } else {
-                let cleanupTar = cp.spawn('rm' [appName+'.tar.gz']);
-                let cleanupDir = cp.spawn('rm', ['-rf', appName]);
+                rimraf(appName, function() {console.log("removed " + appName)});
+                fs.unlink(appName+'.zip')
+                // let cleanupTar = cp.spawn('rm' [appName+'.zip']);
+                // let cleanupDir = cp.spawn('rm', ['-rf', appName]);
             }
         });
     //     let cleanupZip = cp.spawn('rm' [appName+'.zip']);
