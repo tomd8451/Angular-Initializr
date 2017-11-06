@@ -71,16 +71,22 @@ app.get('/', function (req, res){
     if(appName == undefined || appName == 'undefined') {
         appName = 'newApp';
     }
-
     console.log('creating app with name ' + appName);
 
+    // Use NX to include ngrx
+    if(ngrx == true) {
+        var args = ['new', appName + 'Workspace','--collection=@nrwl/schematics',
+            '--skip-install'];
+        
+        let newApp = cp.spawnSync('ng', args, {
+            cwd: appName + 'Workspace',
+            stdio: 'pipe'
+        });
+        console.log(String(newApp.stdout));
+    }
+
     if(prefix == undefined || prefix == 'undefined') {
-        prefix = appName.toLowerCase();
-        prefix = prefix.split('a').join('')
-                       .split('e').join('')
-                       .split('i').join('')
-                       .split('o').join('')
-                       .split('u').join('');
+        prefix = generatePrefix(appName);
     }
     console.log('creating app with prefix ' + prefix);
 
@@ -111,11 +117,6 @@ app.get('/', function (req, res){
         args.push('--routing');
     }
 
-    // Use NX to include ngrx
-    if(ngrx == true) {
-        args.push('--collection=@nrwl/schematics');
-    }
-
     args.push('--style=' + style);
 
     // console.log("calling ng " + args);
@@ -133,9 +134,7 @@ app.get('/', function (req, res){
                 console.log("Error sending file: " + err);
             } else {
                 rimraf(appName, function() {console.log("removed " + appName)});
-                fs.unlink(appName+'.tar.gz')
-                // let cleanupTar = cp.spawn('rm' [ appName + '.tar.gz' ]);
-                // let cleanupDir = cp.spawn('rm', ['-rf', appName]);
+                fs.unlink(appName+'.tar.gz');
             }
         });
     } else {
@@ -146,14 +145,21 @@ app.get('/', function (req, res){
                 console.log("Error sending file: " + err);
             } else {
                 rimraf(appName, function() {console.log("removed " + appName)});
-                fs.unlink(appName+'.zip')
-                // let cleanupTar = cp.spawn('rm' [appName+'.zip']);
-                // let cleanupDir = cp.spawn('rm', ['-rf', appName]);
+                fs.unlink(appName+'.zip');
             }
         });
-    //     let cleanupZip = cp.spawn('rm' [appName+'.zip']);
     }
 })
+
+generatePrefix = function(appName) {
+    var prefix = appName.toLowerCase();
+    prefix = prefix.split('a').join('')
+                   .split('e').join('')
+                   .split('i').join('')
+                   .split('o').join('')
+                   .split('u').join('');
+    return prefix;
+}
 
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!')
