@@ -38,8 +38,8 @@ array-flatten@1.1.1:
   resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
 
 async@^2.0.0:
-  version "2.5.0"
-  resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/async/-/async-2.5.0.tgz#843190fd6b7357a0b9e1c956edddd5ec8462b54d"
+  version "2.6.0"
+  resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
     lodash "^4.14.0"
 

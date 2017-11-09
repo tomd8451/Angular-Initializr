@@ -1,5 +1,6 @@
 FROM node:8.0
 ENV HOME=/usr/src/app
+RUN mkdir /usr/generated
 
 RUN mkdir $HOME
 #RUN chown -R node:root /usr/src/
@@ -24,6 +25,9 @@ RUN yarn install
 
 RUN yarn global add @angular/cli
 RUN yarn global add @nrwl/schematics
+
+RUN yarn add @angular/cli
+RUN yarn add @nrwl/schematics
 
 RUN ng set --global packageManager=yarn
 
