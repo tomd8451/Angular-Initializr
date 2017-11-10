@@ -7,10 +7,6 @@ RUN mkdir $HOME
 #RUN chmod -R 666 /usr/src/
 WORKDIR $HOME
 
-ENV http_proxy=http://proxy.int.8451.com:80
-ENV https_proxy=http://proxy.int.8451.com:443
-ENV no_proxy=*.8451.com
-
 COPY main.js $HOME/main.js
 COPY dist $HOME/dist
 COPY package_prod.json $HOME/package.json
