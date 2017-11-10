@@ -16,7 +16,7 @@ app.use('/', express.static(path.join(__dirname, 'dist')));
 app.get('/api', function (req, res){
     var appName = req.query.appName;
     var prefix = req.query.prefix;
-    var routing = req.query.routingModule;
+    var routing = req.query.routing;
     var ngrx = req.query.ngrx;
     var style = req.query.style;
 
@@ -58,18 +58,6 @@ app.get('/api', function (req, res){
     if(ngrx) {
         generatedApp = generateNgrxApp(appName, prefix, routing, style, generatedDir);
         
-        // Remove node_modules to make the payload smaller
-        // rimraf(generatedDir + '/' + generatedApp + '/node_modules',
-        //     (error) => {
-        //         if (error) {
-        //             console.error("error removing node modules from workspace: "
-        //             + generatedDir + '/' + generatedApp + '/node_modules');
-        //             console.error(error);
-        //         } else {
-        //             console.log("removed node_modules from workspace: "
-        //             + generatedDir + '/' + generatedApp + '/node_modules');
-        //         }
-        //     });
         let zip = cp.execSync('rm -r node_modules',
             { cwd: generatedDir + '/' + generatedApp },
             (error, stdout, stderr) => {

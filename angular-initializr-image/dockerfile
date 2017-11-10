@@ -12,7 +12,8 @@ ENV https_proxy=http://proxy.int.8451.com:443
 ENV no_proxy=*.8451.com
 
 COPY main.js $HOME/main.js
-COPY package.json $HOME/package.json
+COPY dist $HOME/dist
+COPY package_prod.json $HOME/package.json
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list

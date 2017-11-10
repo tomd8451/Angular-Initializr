@@ -206,6 +206,10 @@
   version "2.53.43"
   resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/@types/selenium-webdriver/-/selenium-webdriver-2.53.43.tgz#2de3d718819bc20165754c4a59afb7e9833f6707"
 
+"@webcomponents/custom-elements@^1.0.4":
+  version "1.0.4"
+  resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/@webcomponents/custom-elements/-/custom-elements-1.0.4.tgz#f7de0103026f27863ecfabaf1d450b9c21714910"
+
 abbrev@1:
   version "1.1.1"
   resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -924,6 +928,18 @@ clap@^1.0.9:
   resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/clap/-/clap-1.2.3.tgz#4f36745b32008492557f46412d66d50cb99bce51"
   dependencies:
     chalk "^1.1.3"
+
+clarity-angular@^0.10.13:
+  version "0.10.13"
+  resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/clarity-angular/-/clarity-angular-0.10.13.tgz#a3eccdebbe099b257ab0ba33fe4cf4f51b00e867"
+
+clarity-icons@^0.10.13:
+  version "0.10.13"
+  resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/clarity-icons/-/clarity-icons-0.10.13.tgz#8164d66c310e80c715d89ed7a586e8c9261f77e7"
+
+clarity-ui@^0.10.13:
+  version "0.10.13"
+  resolved "http://artifactory.int.8451.com:80/artifactory/api/npm/npm-all/clarity-ui/-/clarity-ui-0.10.13.tgz#10c062528c289eb79b2dad9b3dec41319f75673c"
 
 clean-css@4.1.x:
   version "4.1.9"
